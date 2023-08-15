@@ -138,7 +138,7 @@
     <ClInclude Include="Callback.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Layer.h" />
-    <ClInclude Include="Layer\Convolution.h" />
+    <ClInclude Include="Layer\Convolutional.h" />
     <ClInclude Include="Layer\FullyConnected.h" />
     <ClInclude Include="Layer\MaxPooling.h" />
     <ClInclude Include="MiniDNN.h" />
@@ -146,6 +146,7 @@
     <ClInclude Include="Optimizer.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="RNG.h" />
+    <ClInclude Include="Utils\Convolution.h" />
     <ClInclude Include="Utils\Enum.h" />
     <ClInclude Include="Utils\IO.h" />
     <ClInclude Include="Utils\Random.h" />

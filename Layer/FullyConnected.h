@@ -67,15 +67,15 @@ namespace MiniDNN
 		{
 			const int nobs = prev_layer_data.cols();
 
-			Matrix& dlz = m_z;
-			Activation::apply_jacobian(m_z, m_a, next_layer_data, dlz);
+			Matrix& dLz = m_z;
+			Activation::apply_jacobian(m_z, m_a, next_layer_data, dLz);
 
-			m_dw.noalias() = prev_layer_data * dlz.transpose() / nobs;
+			m_dw.noalias() = prev_layer_data * dLz.transpose() / nobs;
 
-			m_db.noalias() = dlz.rowwise().mean();
+			m_db.noalias() = dLz.rowwise().mean();
 
 			m_din.resize(this->m_in_size, nobs);
-			m_din.noalias() = m_weight * dlz;
+			m_din.noalias() = m_weight * dLz;
 		}
 
 		const Matrix& backprop_data() const { return m_din; }
