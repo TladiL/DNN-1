@@ -138,11 +138,17 @@
     <ClInclude Include="Callback.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Layer.h" />
+    <ClInclude Include="Layer\Convolution.h" />
+    <ClInclude Include="Layer\FullyConnected.h" />
+    <ClInclude Include="Layer\MaxPooling.h" />
     <ClInclude Include="MiniDNN.h" />
     <ClInclude Include="Network.h" />
     <ClInclude Include="Optimizer.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="RNG.h" />
+    <ClInclude Include="Utils\Enum.h" />
+    <ClInclude Include="Utils\IO.h" />
+    <ClInclude Include="Utils\Random.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

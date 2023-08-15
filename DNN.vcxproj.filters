@@ -31,7 +31,7 @@
     <Filter Include="Header Files\Utils">
       <UniqueIdentifier>{dbfbf5e1-c2d4-4840-91c6-e7169beb7f10}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\external/sparsepp">
+    <Filter Include="Header Files\External">
       <UniqueIdentifier>{d71a1c96-759d-4336-bbc3-9eed37efbd95}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -67,6 +67,24 @@
     </ClInclude>
     <ClInclude Include="RNG.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer\FullyConnected.h">
+      <Filter>Header Files\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer\Convolution.h">
+      <Filter>Header Files\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer\MaxPooling.h">
+      <Filter>Header Files\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Random.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\IO.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Enum.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
