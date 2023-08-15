@@ -8,4 +8,5 @@
 
 #include "Layer.h"
 #include "Layer/FullyConnected.h"
-#include "Layer/Maxpooling.h"
+#include "Layer/Convolution.h"
+#include "Layer/MaxPooling.h"

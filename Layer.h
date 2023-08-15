@@ -39,11 +39,13 @@ namespace MiniDNN
 
 		virtual void backprop(const Matrix& prev_layer_data, const Matrix& next_layer_data) = 0;
 
+		virtual const Matrix& backprop_data() const = 0;
+
 		virtual void update(Optimizer& opt) = 0;
 
-		virtual std::vector<Scalar> get_parameter() const = 0;
+		virtual std::vector<Scalar> get_parameters() const = 0;
 
-		virtual void set_parameter(const std::vector<Scalar>& param) {};
+		virtual void set_parameters(const std::vector<Scalar>& param) {};
 
 		virtual std::vector<Scalar> get_derivatives() const = 0;
 
