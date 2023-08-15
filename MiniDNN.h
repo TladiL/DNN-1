@@ -8,5 +8,5 @@
 
 #include "Layer.h"
 #include "Layer/FullyConnected.h"
-#include "Layer/Convolution.h"
+#include "Layer/Convolutional.h"
 #include "Layer/MaxPooling.h"
