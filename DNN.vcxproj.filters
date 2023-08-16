@@ -39,11 +39,14 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Utils\FindMax.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Activation\Indentity.h">
+      <Filter>Header Files\Activation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Activation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -71,9 +74,6 @@
     <ClInclude Include="Layer\FullyConnected.h">
       <Filter>Header Files\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="Layer\Convolution.h">
-      <Filter>Header Files\Layer</Filter>
-    </ClInclude>
     <ClInclude Include="Layer\MaxPooling.h">
       <Filter>Header Files\Layer</Filter>
     </ClInclude>
@@ -86,5 +86,34 @@
     <ClInclude Include="Utils\Enum.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Layer\Convolutional.h">
+      <Filter>Header Files\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Convolution.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Activation\ReLU.h">
+      <Filter>Header Files\Activation</Filter>
+    </ClInclude>
+    <ClInclude Include="Activation\Sigmoid.h">
+      <Filter>Header Files\Activation</Filter>
+    </ClInclude>
+    <ClInclude Include="Activation\Softmax.h">
+      <Filter>Header Files\Activation</Filter>
+    </ClInclude>
+    <ClInclude Include="Activation\Tanh.h">
+      <Filter>Header Files\Activation</Filter>
+    </ClInclude>
+    <ClInclude Include="Activation\Mish.h">
+      <Filter>Header Files\Activation</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="LICENSE.txt" />
   </ItemGroup>
 </Project>
