@@ -12,14 +12,14 @@
 
 namespace MiniDNN
 {
-//	template <typename Activation>
+	template <typename Activation>
 	class Convolutional : public Layer
 	{
 	private:
 		typedef Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic> Matrix;
 		typedef Eigen::Matrix<Scalar, Eigen::Dynamic, 1> Vector;
 		typedef Matrix::ConstAlignedMapType ConstAlignedMapMat;
-		typedef Vector::ConstAlignedMapType ConstAlignedMapvec;
+		typedef Vector::ConstAlignedMapType ConstAlignedMapVec;
 		typedef Vector::AlignedMapType AlignedMapVec;
 		typedef std::map<std::string, int> MataInfo;
 
@@ -85,7 +85,7 @@ namespace MiniDNN
 			}
 
 			m_a.resize(this->m_out_size, nobs);
-//			Activation::activate(m_z, m_a);
+			Activation::activate(m_z, m_a);
 		}
 
 		const Matrix& output() const { return m_a; }
@@ -95,7 +95,7 @@ namespace MiniDNN
 			const int nobs = prev_layer_data.cols();
 
 			Matrix& dLz = m_z;
-//			Activation::apply_jacobian(m_z, m_a, next_layer_data, dLz);
+			Activation::apply_jacobian(m_z, m_a, next_layer_data, dLz);
 
 			internal::ConvDims back_conv_dim(nobs, m_dim.out_channels, m_dim.channel_rows,
 											m_dim.channel_cols, m_dim.conv_rows, m_dim.conv_cols);
@@ -119,18 +119,61 @@ namespace MiniDNN
 
 		const Matrix& backprop_data() const { return m_din; }
 
-		void update(Optimizer& opt) {}
+		void update(Optimizer& opt)
+		{
+			ConstAlignedMapVec dw(m_df_data.data(), m_df_data.size());
+			ConstAlignedMapVec db(m_db.data(), m_db.size());
+			AlignedMapVec	   w(m_filter_data.data(), m_filter_data.size());
+			AlignedMapVec	   b(m_bias.data(), m_bias.size());
+							   opt.update(dw, w);
+							   opt.update(db, b);
+		}
 
-		std::vector<Scalar> get_parameters() const {}
+		std::vector<Scalar> get_parameters() const
+		{
+			std::vector<Scalar> res(m_filter_data.size() + m_bias.size());
 
-		void set_parameters(const std::vector<Scalar>& param) {};
+			std::copy(m_filter_data.data(), m_filter_data.data() + m_filter_data.size(),res.begin());
+			std::copy(m_bias.data(), m_bias.data() + m_bias.size(), res.begin() + m_filter_data.size());
+			
+			return res;
+		}
 
-		std::vector<Scalar> get_derivatives() const {}
+		void set_parameters(const std::vector<Scalar>& param)
+		{
+			if (static_cast<int>(param.size()) != m_filter_data.size() + m_bias.size())
+			{
+				throw std::invalid_argument("[Class Convolutional]: Parameter size does not match");
+			}
 
-		std::string layer_type() const {}
+			std::copy(param.begin() + m_filter_data.size(), param.end(), m_bias.data());
+		}
 
-		std::string activataion_type() const {}
+		std::vector<Scalar> get_derivatives() const
+		{
+			std::vector<Scalar> res(m_df_data.size() + m_db.size());
 
-		void fill_meta_info(MetaInfo& map, int index) const {}
+			std::copy(m_df_data.data(), m_df_data.data() + m_df_data.size(), res.begin());
+			std::copy(m_db.data(), m_db.data() + m_db.size(), res.begin() + m_df_data.size());
+
+			return res;
+		}
+
+		std::string layer_type() const { return "Convolutional"; }
+
+		std::string activataion_type() const { return Activation::return_type(); }
+
+		void fill_meta_info(MetaInfo& map, int index) const
+		{
+			std::string ind = internal::to_string(index);
+			map.insert(std::make_pair("Layer" + ind, internal::layer_id(layer_type())));
+			map.insert(std::make_pair("Activation" + ind, internal::activation_id(activataion_type())));
+			map.insert(std::make_pair("in_channels" + ind, m_dim.in_channels));
+			map.insert(std::make_pair("out_channel" + ind, m_dim.out_channels));
+			map.insert(std::make_pair("in_height" + ind, m_dim.channel_rows));
+			map.insert(std::make_pair("in_width" + ind, m_dim.channel_cols));
+			map.insert(std::make_pair("window_width" + ind, m_dim.filter_cols));
+			map.insert(std::make_pair("window_height" + ind, m_dim.filter_rows));
+		}
 	};
 }
