@@ -131,10 +131,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Activation\Indentity.h" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Utils\FindMax.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Activation.h" />
+    <ClInclude Include="Activation\Mish.h" />
+    <ClInclude Include="Activation\ReLU.h" />
+    <ClInclude Include="Activation\Sigmoid.h" />
+    <ClInclude Include="Activation\Softmax.h" />
+    <ClInclude Include="Activation\Tanh.h" />
     <ClInclude Include="Callback.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Layer.h" />
@@ -150,6 +156,14 @@
     <ClInclude Include="Utils\Enum.h" />
     <ClInclude Include="Utils\IO.h" />
     <ClInclude Include="Utils\Random.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="LICENSE.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
