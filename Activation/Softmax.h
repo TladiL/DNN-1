@@ -5,7 +5,7 @@
 
 namespace MiniDNN
 {
-	class Identity
+	class Softmax
 	{
 	private:
 		typedef Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic> Matrix;
@@ -18,6 +18,6 @@ namespace MiniDNN
 			G.noalias() = F;
 		}
 
-		static std::string return_type() { return "Identity"; }
+		static std::string return_type() { return "Softmax"; }
 	};
 }
